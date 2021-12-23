@@ -8,6 +8,7 @@ public class GameOfLifeTest {
     void test() {
         int expectedResult = 9;
         var actualResult = GameOfLife.createGrid(3, 3).size();
-        assertEquals(expectedResult, expectedResult);
+
+        assertEquals(expectedResult, actualResult);
     }
 }
