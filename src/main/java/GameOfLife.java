@@ -2,21 +2,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameOfLife {
-    public static ArrayList<Cell> createGrid(int xSize, int ySize) {
 
-        ArrayList<Cell> grid = new ArrayList<>();
-
-        for (int i = 1; i <= xSize; i++) {
-            for (int j = 1; j <= ySize; j++) {
-                grid.add(new Cell(i, j, false));
-
-            }
-        }
-        return grid;
+    public static Cell createCell(int x, int y, boolean isAlive) {
+        return new Cell(x, y, isAlive);
     }
 
-    public static ArrayList<Cell> defineCells(ArrayList<Cell> grid, List<Boolean> input) {
-        return grid;
 
+    public static List<Cell> inputValues(int x, int y) {
+
+        List<Cell> cellsGrid = new ArrayList<>();
+
+        for (int i = 1; i <= x; i++) {
+            for (int j = 1; j <= y; j++) {
+                System.out.println("is the cell " + i + " alive or death? (A/D)");
+                var isAlive = true;
+                Cell cell = createCell(i, j, isAlive);
+                cellsGrid.add(cell);
+            }
+        }
+        return cellsGrid;
     }
 }
