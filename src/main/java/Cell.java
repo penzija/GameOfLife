@@ -1,7 +1,7 @@
 public class Cell {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     boolean isAlive;
 
 
@@ -11,9 +11,16 @@ public class Cell {
         this.isAlive = isAlive;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void isAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     @Override
     public String toString() {
-        return "Cell{" + "x=" + x + ", y=" + y + ", isAlive=" + isAlive +
-                '}';
+        return "Cell{" + "x=" + x + ", y=" + y + ", isAlive=" + isAlive + '}';
     }
 }

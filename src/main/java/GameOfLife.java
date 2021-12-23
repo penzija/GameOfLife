@@ -1,10 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameOfLife {
     public static ArrayList<Cell> createGrid(int xSize, int ySize) {
-
-        int gridSize = xSize * ySize;
 
         ArrayList<Cell> grid = new ArrayList<>();
 
@@ -14,8 +12,11 @@ public class GameOfLife {
 
             }
         }
-        System.out.println(grid);
-
         return grid;
+    }
+
+    public static ArrayList<Cell> defineCells(ArrayList<Cell> grid, List<Boolean> input) {
+        return grid;
+
     }
 }
