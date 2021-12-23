@@ -7,18 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GameOfLifeTest {
 
     @Test
-    void cell_creation() {
-        Cell expectedResult = new Cell(1, 1, true);
-        Cell actualResult = GameOfLife.createCell(1, 1, true);
+    void storeAllValues_method() {
+        List<Boolean> controlList = List.of(true, true, true, true, true, true, true, true, true);
+        GridParameter expectedResult = new GridParameter(3, 3, controlList);
+        GridParameter actualResult = GameOfLife.storeGridParameter();
+
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void create_grid() {
-        int gridX = 3;
-        int gridY = 3;
-
-        List<Cell> expectedResult = List.of(
+    void defineGrid_method() {
+        List<Cell> expectedResult= List.of(
                 new Cell(1, 1, true),
                 new Cell(1, 2, true),
                 new Cell(1, 3, true),
@@ -30,7 +29,12 @@ public class GameOfLifeTest {
                 new Cell(3, 3, true)
         );
 
-        List<Cell> actualResult = GameOfLife.inputValues(gridX, gridY);
+        List<Boolean> controlList = List.of(true, true, true, true, true, true, true, true, true);
+
+        GridParameter gridParameters = new GridParameter(3,3, controlList);
+        var actualResult = GameOfLife.buildGrid(gridParameters);
+
         assertEquals(expectedResult, actualResult);
+
     }
 }

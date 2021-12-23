@@ -3,23 +3,34 @@ import java.util.List;
 
 public class GameOfLife {
 
-    public static Cell createCell(int x, int y, boolean isAlive) {
-        return new Cell(x, y, isAlive);
+    public static GridParameter storeGridParameter() {
+        List<Boolean> deadOrAlive = new ArrayList<>();
+
+        System.out.println("How big is the grid? (x) ");
+        System.out.println("How big is the grid? (y) ");
+        int gridXValue = 3;
+        int gridYValue = 3;
+
+        for (int i = 0; i < gridXValue * gridYValue; i++) {
+            System.out.println("Is the cell dead or alive? ");
+            deadOrAlive.add(true);
+        }
+        return new GridParameter(gridXValue, gridYValue, deadOrAlive);  // HERE WE CREATED THE PARAMETERS FOR THE NEXT METHOD
     }
 
+    public static List<Cell> buildGrid(GridParameter gridParameters) {
+        List<Cell> cellsInGrid = new ArrayList<>();
 
-    public static List<Cell> inputValues(int x, int y) {
+        int xValue = gridParameters.getGridX();
+        int yValue = gridParameters.getGridY();
+        List<Boolean> listOfStates = new ArrayList<>(gridParameters.getCellState());
+        int indexOfList = 0;
 
-        List<Cell> cellsGrid = new ArrayList<>();
-
-        for (int i = 1; i <= x; i++) {
-            for (int j = 1; j <= y; j++) {
-                System.out.println("is the cell " + i + " alive or death? (A/D)");
-                var isAlive = true;
-                Cell cell = createCell(i, j, isAlive);
-                cellsGrid.add(cell);
+        for (int i = 1; i <= xValue; i++) {
+            for (int j = 1; j <= yValue; j++) {
+                cellsInGrid.add(new Cell(i, j, listOfStates.get(indexOfList)));
             }
         }
-        return cellsGrid;
+        return cellsInGrid;
     }
 }
