@@ -11,6 +11,14 @@ public class Cell {
         this.isAlive = isAlive;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public boolean isAlive() {
         return isAlive;
     }

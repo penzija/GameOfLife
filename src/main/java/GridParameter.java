@@ -5,8 +5,9 @@ public class GridParameter {
     private final int gridX;
     private final int gridY;
     List<Boolean> cellState;
+    private int maxX;
 
-    public GridParameter(int gridX, int gridY, List<Boolean> cellState) {
+    public GridParameter(int gridX, int gridY, List<Boolean> cellState, int maxX) {
         this.gridX = gridX;
         this.gridY = gridY;
         this.cellState = cellState;

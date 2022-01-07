@@ -10,12 +10,13 @@ public class GameOfLife {
         System.out.println("How big is the grid? (y) ");
         int gridXValue = 3;
         int gridYValue = 3;
+        int gridMaxX = 3;
 
         for (int i = 0; i < gridXValue * gridYValue; i++) {
             System.out.println("Is the cell dead or alive? ");
             deadOrAlive.add(true);
         }
-        return new GridParameter(gridXValue, gridYValue, deadOrAlive);  // HERE WE CREATED THE PARAMETERS FOR THE NEXT METHOD
+        return new GridParameter(gridXValue, gridYValue, deadOrAlive, gridMaxX);  // HERE WE CREATED THE PARAMETERS FOR THE NEXT METHOD
     }
 
     public static List<Cell> buildGrid(GridParameter gridParameters) {
@@ -32,5 +33,24 @@ public class GameOfLife {
             }
         }
         return cellsInGrid;
+    }
+
+    public static String stringOutput(ArrayList<Cell> cellsGrid) {
+
+        int maxX = 3;
+        String grid = "";
+
+        for (int i = 1; i <= cellsGrid.size(); i++) {
+            if (i%maxX == 0){
+                grid += ("X\r\n");
+            }
+            else if (cellsGrid.get(i).isAlive) {
+                grid += ("X");
+        }
+            else {
+                grid += ("o");
+            }
+        }
+        return grid;
     }
 }
