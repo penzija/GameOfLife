@@ -53,4 +53,41 @@ public class GameOfLife {
         }
         return grid;
     }
+
+    public static ArrayList<Cell> calculateGenerations(ArrayList<Cell> cellGrid) {
+
+        int Rows = 3;
+        int Columns = 3;
+
+        ArrayList<Cell> testGrid = new ArrayList<>();
+
+        testGrid.add(new Cell(1, 1, true));
+        testGrid.add(new Cell(1, 2, true));
+        testGrid.add(new Cell(1, 3, true));
+        testGrid.add(new Cell(2, 1, true));
+        testGrid.add(new Cell(2, 2, true));
+        testGrid.add(new Cell(2, 3, true));
+        testGrid.add(new Cell(3, 1, true));
+        testGrid.add(new Cell(3, 2, true));
+        testGrid.add(new Cell(3, 3, true));
+
+        for (int i = 0; i < Rows; i++)
+        {
+            for (int j = 0; j < Columns; j++)
+            {
+                if (testGrid. == 0)
+                    System.out.print(".");
+                else
+                    System.out.print("*");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        nextGeneration(grid, M, N);
+
+
+
+}
+
 }

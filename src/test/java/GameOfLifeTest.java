@@ -57,4 +57,27 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void calculateGenerations(){
+        ArrayList<Cell> testGrid = new ArrayList<>();
+
+        testGrid.add(new Cell(1, 1, true));
+        testGrid.add(new Cell(1, 2, true));
+        testGrid.add(new Cell(1, 3, true));
+        testGrid.add(new Cell(2, 1, true));
+        testGrid.add(new Cell(2, 2, true));
+        testGrid.add(new Cell(2, 3, true));
+        testGrid.add(new Cell(3, 1, true));
+        testGrid.add(new Cell(3, 2, true));
+        testGrid.add(new Cell(3, 3, true));
+
+          String generationZero =  "XXX\r\nXXX\r\nXXX\r\n";
+
+          var actualResult = GameOfLife.calculateGenerations(generationZero);
+
+
+
+
+    }
 }
