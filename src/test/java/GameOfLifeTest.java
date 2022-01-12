@@ -105,6 +105,23 @@ public class GameOfLifeTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    void calculateGenerations4() {
+        ArrayList<Cell> testGrid = new ArrayList<>();
+
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(2, 2));
+        testGrid.add(new Cell(3, 3));
+
+        var expectedResult = new ArrayList<Cell>();
+
+        expectedResult.add(new Cell(2, 2));
+
+        var actualResult = GameOfLife.calculateGenerations(testGrid);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
 
 
 }
