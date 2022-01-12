@@ -63,14 +63,6 @@ public class GameOfLifeTest {
         ArrayList<Cell> testGrid = new ArrayList<>();
 
         testGrid.add(new Cell(1, 1));
-        testGrid.add(new Cell(1, 2));
-        testGrid.add(new Cell(1, 3));
-        testGrid.add(new Cell(2, 1));
-        testGrid.add(new Cell(2, 2));
-        testGrid.add(new Cell(2, 3));
-        testGrid.add(new Cell(3, 1));
-        testGrid.add(new Cell(3, 2));
-        testGrid.add(new Cell(3, 3));
 
         var expectedResult = new ArrayList<Cell>();
 
@@ -78,4 +70,20 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void calculateGenerations2() {
+        ArrayList<Cell> testGrid = new ArrayList<>();
+
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(2, 1));
+
+        var expectedResult = new ArrayList<Cell>();
+
+        var actualResult = GameOfLife.calculateGenerations(testGrid);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+
 }
