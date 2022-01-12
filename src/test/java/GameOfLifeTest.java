@@ -18,15 +18,15 @@ public class GameOfLifeTest {
     @Test
     void defineGrid_method() {
         List<Cell> expectedResult = List.of(
-                new Cell(1, 1, true),
-                new Cell(1, 2, true),
-                new Cell(1, 3, true),
-                new Cell(2, 1, true),
-                new Cell(2, 2, true),
-                new Cell(2, 3, true),
-                new Cell(3, 1, true),
-                new Cell(3, 2, true),
-                new Cell(3, 3, true)
+                new Cell(1, 1),
+                new Cell(1, 2),
+                new Cell(1, 3),
+                new Cell(2, 1),
+                new Cell(2, 2),
+                new Cell(2, 3),
+                new Cell(3, 1),
+                new Cell(3, 2),
+                new Cell(3, 3)
         );
 
         List<Boolean> controlList = List.of(true, true, true, true, true, true, true, true, true);
@@ -41,15 +41,15 @@ public class GameOfLifeTest {
     void testGridContent() {
         ArrayList<Cell> testGrid = new ArrayList<>();
 
-        testGrid.add(new Cell(1, 1, true));
-        testGrid.add(new Cell(1, 2, true));
-        testGrid.add(new Cell(1, 3, true));
-        testGrid.add(new Cell(2, 1, true));
-        testGrid.add(new Cell(2, 2, true));
-        testGrid.add(new Cell(2, 3, true));
-        testGrid.add(new Cell(3, 1, true));
-        testGrid.add(new Cell(3, 2, true));
-        testGrid.add(new Cell(3, 3, true));
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(1, 2));
+        testGrid.add(new Cell(1, 3));
+        testGrid.add(new Cell(2, 1));
+        testGrid.add(new Cell(2, 2));
+        testGrid.add(new Cell(2, 3));
+        testGrid.add(new Cell(3, 1));
+        testGrid.add(new Cell(3, 2));
+        testGrid.add(new Cell(3, 3));
 
         var expectedResult = "XXX\r\nXXX\r\nXXX\r\n";
 
@@ -59,25 +59,23 @@ public class GameOfLifeTest {
     }
 
     @Test
-    void calculateGenerations(){
+    void calculateGenerations() {
         ArrayList<Cell> testGrid = new ArrayList<>();
 
-        testGrid.add(new Cell(1, 1, true));
-        testGrid.add(new Cell(1, 2, true));
-        testGrid.add(new Cell(1, 3, true));
-        testGrid.add(new Cell(2, 1, true));
-        testGrid.add(new Cell(2, 2, true));
-        testGrid.add(new Cell(2, 3, true));
-        testGrid.add(new Cell(3, 1, true));
-        testGrid.add(new Cell(3, 2, true));
-        testGrid.add(new Cell(3, 3, true));
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(1, 2));
+        testGrid.add(new Cell(1, 3));
+        testGrid.add(new Cell(2, 1));
+        testGrid.add(new Cell(2, 2));
+        testGrid.add(new Cell(2, 3));
+        testGrid.add(new Cell(3, 1));
+        testGrid.add(new Cell(3, 2));
+        testGrid.add(new Cell(3, 3));
 
-          String generationZero =  "XXX\r\nXXX\r\nXXX\r\n";
+        var expectedResult = new ArrayList<Cell>();
 
-          var actualResult = GameOfLife.calculateGenerations(generationZero);
+        var actualResult = GameOfLife.calculateGenerations(testGrid);
 
-
-
-
+        assertEquals(expectedResult, actualResult);
     }
 }
