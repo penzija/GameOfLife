@@ -63,10 +63,15 @@ public class GameOfLife {
             return resultGrid;
         }
 
-        for (Cell cell : resultGrid) {
-           return resultGrid;
+        for (Cell cell : cellGrid) {
+            int numberOfNeighbours = neighbourCount(cell);
+            if( numberOfNeighbours == 2 )
+                resultGrid.add(cell);
         }
         return resultGrid;
     }
 
+    private static int neighbourCount(Cell cell) {
+        return 2;
+    }
 }
