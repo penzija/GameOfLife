@@ -56,13 +56,12 @@ public class GameOfLife {
     public static ArrayList<Cell> calculateGenerations(ArrayList<Cell> cellGrid) {
         ArrayList<Cell> resultGrid = new ArrayList<>();
 
-
         int numberOfCells = cellGrid.size();
         if (numberOfCells <= 2) {
             return resultGrid;
         }
 
-        int numberOfFreeSpaces = 1;
+        int numberOfFreeSpaces = calculateFreeSpaces(cellGrid);
 
         for (Cell cell : cellGrid) {
             int numberOfNeighbours = neighbourCount(cell, cellGrid);
@@ -79,6 +78,10 @@ public class GameOfLife {
         }
 
         return resultGrid;
+    }
+
+    public static int calculateFreeSpaces(List<Cell> cellGrid) {
+        return 1;
     }
 
     private static boolean isFreeSpace() {
