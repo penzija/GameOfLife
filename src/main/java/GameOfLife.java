@@ -26,7 +26,6 @@ public class GameOfLife {
         int yValue = gridParameters.getGridY();
         List<Boolean> listOfStates = new ArrayList<>(gridParameters.getCellState());
 
-
         for (int i = 1; i <= xValue; i++) {
             for (int j = 1; j <= yValue; j++) {
                 for (Boolean isAlive : listOfStates) {

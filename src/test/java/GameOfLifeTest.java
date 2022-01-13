@@ -29,7 +29,7 @@ public class GameOfLifeTest {
                 new Cell(3, 3)
         );
 
-        List<Boolean> controlList = List.of(true, true, true, true, true, true, true, true, true);
+        List<Boolean> controlList = List.of(true, false, false, false, false, false, false, false, false);
 
         GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
         var actualResult = GameOfLife.buildGrid(gridParameters);
