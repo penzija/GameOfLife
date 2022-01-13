@@ -106,6 +106,8 @@ public class GameOfLife {
 
         return (int) (count - 1);
 
+        // free space = if the count is 3 then return 1 as free space
+
         /*
             x-1, y-1
             x,   y-1
