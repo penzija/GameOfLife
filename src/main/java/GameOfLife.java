@@ -56,17 +56,38 @@ public class GameOfLife {
     public static ArrayList<Cell> calculateGenerations(ArrayList<Cell> cellGrid) {
         ArrayList<Cell> resultGrid = new ArrayList<>();
 
+
         int numberOfCells = cellGrid.size();
         if (numberOfCells <= 2) {
             return resultGrid;
         }
 
+        int numberOfFreeSpaces = 1;
+
         for (Cell cell : cellGrid) {
             int numberOfNeighbours = neighbourCount(cell, cellGrid);
-            if (numberOfNeighbours <= 3 && numberOfNeighbours >= 2)
+
+            if (numberOfNeighbours <= 3 && numberOfNeighbours >= 2) {
                 resultGrid.add(cell);
+            }
         }
+
+        if (numberOfFreeSpaces > 0) {
+            int x = findFreePlace()[0];
+            int y = findFreePlace()[1];
+            resultGrid.add(new Cell(x, y));
+        }
+
         return resultGrid;
+    }
+
+    private static boolean isFreeSpace() {
+        return true;
+    }
+
+    private static int[] findFreePlace() {
+
+        return new int[]{2, 2};
     }
 
     private static int neighbourCount(Cell cell, List<Cell> cellList) {
@@ -78,6 +99,30 @@ public class GameOfLife {
                         && c.getY() >= y - 1 && c.getY() <= y + 1).count();
 
         return (int) (count - 1);
+
+        /*
+            x-1, y-1
+            x,   y-1
+            x+1, y-1
+
+            x-1, y
+            x+1, y
+
+            x-1, y+1
+            x,   y+1
+            x+1, y+1
+        */
+    }
+
+    private static int numberOfCells(Cell cell, List<Cell> cellList) {
+        int x = cell.getX();
+        int y = cell.getY();
+
+        var count = cellList.stream().filter(c ->
+                c.getX() >= x - 1 && c.getX() <= x + 1
+                        && c.getY() >= y - 1 && c.getY() <= y + 1).count();
+
+        return (int) (count);
 
         /*
             x-1, y-1

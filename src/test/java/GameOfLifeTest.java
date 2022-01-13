@@ -38,6 +38,28 @@ public class GameOfLifeTest {
     }
 
     @Test
+    void defineGrid_method2() {
+        List<Cell> expectedResult = List.of(
+                new Cell(1, 1),
+                new Cell(1, 2),
+                new Cell(1, 3),
+                new Cell(2, 1),
+                new Cell(2, 2),
+                new Cell(2, 3),
+                new Cell(3, 1),
+                new Cell(3, 2),
+                new Cell(3, 3)
+        );
+
+        List<Boolean> controlList = List.of(true, true, false, false, false, false, false, false, false);
+
+        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
+        var actualResult = GameOfLife.buildGrid(gridParameters);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     void testGridContent() {
         ArrayList<Cell> testGrid = new ArrayList<>();
 
