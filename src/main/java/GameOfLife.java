@@ -47,7 +47,7 @@ public class GameOfLife {
         for (int i = 1; i <= cellsGrid.size(); i++) {
             if (i % maxX == 0) {
                 grid += ("X\r\n");
-            } else if (true){
+            } else if (true) {
                 grid += ("X");
             }
         }
@@ -55,23 +55,42 @@ public class GameOfLife {
     }
 
     public static ArrayList<Cell> calculateGenerations(ArrayList<Cell> cellGrid) {
-
         ArrayList<Cell> resultGrid = new ArrayList<>();
 
         int numberOfCells = cellGrid.size();
-        if (numberOfCells < 2) {
+        if (numberOfCells <= 2) {
             return resultGrid;
         }
 
         for (Cell cell : cellGrid) {
-            int numberOfNeighbours = neighbourCount(cell);
-            if( numberOfNeighbours == 2 )
+            int numberOfNeighbours = neighbourCount(cell, cellGrid);
+            if (numberOfNeighbours <= 3 && numberOfNeighbours >= 2)
                 resultGrid.add(cell);
         }
         return resultGrid;
     }
 
-    private static int neighbourCount(Cell cell) {
-        return 2;
+    private static int neighbourCount(Cell cell, List<Cell> cellList) {
+        int x = cell.getX();
+        int y = cell.getY();
+
+        var count = cellList.stream().filter(c ->
+                c.getX() >= x - 1 && c.getX() <= x + 1
+                        && c.getY() >= y - 1 && c.getY() <= y + 1).count();
+
+        return (int) (count - 1);
+
+        /*
+            x-1, y-1
+            x,   y-1
+            x+1, y-1
+
+            x-1, y
+            x+1, y
+
+            x-1, y+1
+            x,   y+1
+            x+1, y+1
+        */
     }
 }

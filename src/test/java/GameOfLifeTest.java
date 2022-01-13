@@ -121,7 +121,4 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
-
-
-
 }
