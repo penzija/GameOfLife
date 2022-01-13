@@ -81,11 +81,14 @@ public class GameOfLife {
     }
 
     public static int calculateFreeSpaces(List<Cell> cellGrid) {
-        return 1;
-    }
 
-    private static boolean isFreeSpace() {
-        return true;
+        for (Cell cell : cellGrid) {
+            int numberOfNeighbours = neighbourCount(cell, cellGrid);
+            if (numberOfNeighbours == 2) {
+                return 1;
+            }
+        }
+        return 0;
     }
 
     private static int[] findFreePlace() {
@@ -117,27 +120,5 @@ public class GameOfLife {
         */
     }
 
-    private static int numberOfCells(Cell cell, List<Cell> cellList) {
-        int x = cell.getX();
-        int y = cell.getY();
 
-        var count = cellList.stream().filter(c ->
-                c.getX() >= x - 1 && c.getX() <= x + 1
-                        && c.getY() >= y - 1 && c.getY() <= y + 1).count();
-
-        return (int) (count);
-
-        /*
-            x-1, y-1
-            x,   y-1
-            x+1, y-1
-
-            x-1, y
-            x+1, y
-
-            x-1, y+1
-            x,   y+1
-            x+1, y+1
-        */
-    }
 }
