@@ -143,4 +143,53 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void calculateGenerations5() {
+        ArrayList<Cell> testGrid = new ArrayList<>();
+
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(2, 1));
+        testGrid.add(new Cell(1, 2));
+
+        var expectedResult = new ArrayList<Cell>();
+
+        expectedResult.add(new Cell(1, 1));
+        expectedResult.add(new Cell(2, 1));
+        expectedResult.add(new Cell(1, 2));
+        expectedResult.add(new Cell(2, 2));
+
+        var actualResult = GameOfLife.calculateGenerations(testGrid);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void calculateFreeSpace(){
+        ArrayList<Cell> testGrid = new ArrayList<>();
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(2, 1));
+        testGrid.add(new Cell(1, 2));
+
+        var expectedResult = 1;
+
+        var actualResult = GameOfLife.calculateFreeSpaces(testGrid);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void calculateFreeSpace2(){
+        ArrayList<Cell> testGrid = new ArrayList<>();
+        testGrid.add(new Cell(1, 1));
+        testGrid.add(new Cell(2, 1));
+        testGrid.add(new Cell(1, 2));
+        testGrid.add(new Cell(6, 1));
+        testGrid.add(new Cell(7, 1));
+        testGrid.add(new Cell(6, 2));
+
+        var expectedResult = 1;
+
+        var actualResult = GameOfLife.calculateFreeSpaces(testGrid);
+        assertEquals(expectedResult, actualResult);
+    }
 }
