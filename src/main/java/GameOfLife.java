@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class GameOfLife {
         for (int i = 1; i <= cellsGrid.size(); i++) {
             if (i % maxX == 0) {
                 grid += ("X\r\n");
-            } else if (true) {
+            } else {
                 grid += ("X");
             }
         }
@@ -61,8 +62,6 @@ public class GameOfLife {
             return resultGrid;
         }
 
-        int numberOfFreeSpaces = calculateFreeSpaces(cellGrid);
-
         for (Cell cell : cellGrid) {
             int numberOfNeighbours = neighbourCount(cell, cellGrid);
 
@@ -71,29 +70,18 @@ public class GameOfLife {
             }
         }
 
-        if (numberOfFreeSpaces > 0) {
-            int x = findFreePlace()[0];
-            int y = findFreePlace()[1];
-            resultGrid.add(new Cell(x, y));
-        }
+        resultGrid.addAll(createLivingCell(resultGrid));
 
         return resultGrid;
     }
 
-    public static int calculateFreeSpaces(List<Cell> cellGrid) {
+    public static List<Cell> createLivingCell(List<Cell> cellGrid) {
 
-        for (Cell cell : cellGrid) {
-            int numberOfNeighbours = neighbourCount(cell, cellGrid);
-            if (numberOfNeighbours == 2) {
-                return 1;
-            }
-        }
-        return 0;
-    }
+        List<Cell> newCells = new ArrayList<>();
 
-    private static int[] findFreePlace() {
+        newCells.add(new Cell(5,5));
 
-        return new int[]{2, 2};
+        return newCells;
     }
 
     private static int neighbourCount(Cell cell, List<Cell> cellList) {
