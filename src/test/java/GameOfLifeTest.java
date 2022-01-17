@@ -165,10 +165,21 @@ public class GameOfLifeTest {
     }
 
     @Test
-    void createLivingCell(){
-        List<Cell> testGrid = List.of(new Cell(1,1));
+    void createLivingCell() {
+        List<Cell> testGrid = List.of(new Cell(1, 1));
 
-        var expectedResult = List.of(new Cell(5,5));
+        var expectedResult = List.of(new Cell(5, 5));
+        var actualResult = GameOfLife.createLivingCell(testGrid);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void createLivingCell2() {
+        List<Cell> testGrid = List.of(new Cell(1, 1), new Cell(2, 1), new Cell(1, 2));
+
+        var expectedResult = List.of(new Cell(2, 2));
+
         var actualResult = GameOfLife.createLivingCell(testGrid);
 
         assertEquals(expectedResult, actualResult);

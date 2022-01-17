@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,9 +76,32 @@ public class GameOfLife {
 
     public static List<Cell> createLivingCell(List<Cell> cellGrid) {
 
-        List<Cell> newCells = new ArrayList<>();
+        Set<Cell> deadSet = new HashSet<>();
+        //For each living cell in grid
+        for (Cell cell : cellGrid) {
+            //Create all neighbour Cells and add to deadSet
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY()));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY()));
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY() + 1));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY() + 1));
+            deadSet.add(new Cell(cell.getX(), cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX(), cell.getY() + 1));
+        }
 
-        newCells.add(new Cell(5,5));
+        //Remove all cells that are alive from deadSet,
+        cellGrid.forEach(deadSet::remove);
+
+        //For each cell in deadSet check number of neighbours
+        //If neighbourCount == 3 add Cell to newCells;
+        List<Cell> newCells = new ArrayList<>();
+        for (Cell cell : deadSet) {
+            if (neighbourCount(cell, cellGrid) == 3)
+                newCells.add(cell);
+        }
+        //return deadSet.stream().filter(cell -> neighbourCount(cell,cellGrid) == 3).toList();
+
 
         return newCells;
     }
