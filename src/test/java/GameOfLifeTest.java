@@ -16,29 +16,7 @@ public class GameOfLifeTest {
     }
 
     @Test
-    void defineGrid_method() {
-        List<Cell> expectedResult = List.of(
-                new Cell(1, 1),
-                new Cell(1, 2),
-                new Cell(1, 3),
-                new Cell(2, 1),
-                new Cell(2, 2),
-                new Cell(2, 3),
-                new Cell(3, 1),
-                new Cell(3, 2),
-                new Cell(3, 3)
-        );
-
-        List<Boolean> controlList = List.of(true, false, false, false, false, false, false, false, false);
-
-        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
-        var actualResult = GameOfLife.buildGrid(gridParameters);
-
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    void defineGrid_method2() {
+    void defineGrid_cell_creation() {
         List<Cell> expectedResult = List.of(
                 new Cell(1, 1),
                 new Cell(1, 2),
@@ -60,7 +38,36 @@ public class GameOfLifeTest {
     }
 
     @Test
-    void testGridContent() {
+    void defineGrid_one_cell() {
+        List<Cell> expectedResult = List.of(
+                new Cell(1, 1)
+        );
+
+        List<Boolean> controlList = List.of(true, false, false, false, false, false, false, false, false);
+
+        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
+        var actualResult = GameOfLife.buildGrid(gridParameters);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void defineGrid_method3() {
+        List<Cell> expectedResult = List.of(
+                new Cell(3, 3)
+        );
+
+        List<Boolean> controlList = List.of(false, false, false, false, false, false, false, false, true);
+
+        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
+        var actualResult = GameOfLife.buildGrid(gridParameters);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+
+    @Test
+    void testGridOutput() {
         ArrayList<Cell> testGrid = new ArrayList<>();
 
         testGrid.add(new Cell(1, 1));
@@ -73,9 +80,11 @@ public class GameOfLifeTest {
         testGrid.add(new Cell(3, 2));
         testGrid.add(new Cell(3, 3));
 
+        var maxX = 3;
+
         var expectedResult = "XXX\r\nXXX\r\nXXX\r\n";
 
-        var actualResult = GameOfLife.stringOutput(testGrid);
+        var actualResult = GameOfLife.stringOutput(testGrid, maxX);
 
         assertEquals(expectedResult, actualResult);
     }

@@ -20,27 +20,35 @@ public class GameOfLife {
     }
 
     public static List<Cell> buildGrid(GridParameter gridParameters) {
-        List<Cell> cellsInGrid = new ArrayList<>();
 
         int xValue = gridParameters.getGridX();
         int yValue = gridParameters.getGridY();
-        List<Boolean> listOfStates = new ArrayList<>(gridParameters.getCellState());
+        List<Boolean> listOfStates = new ArrayList<>(gridParameters.cellState);
+
+        List<Cell> cellsInGrid = new ArrayList<>();
 
         for (int i = 1; i <= xValue; i++) {
             for (int j = 1; j <= yValue; j++) {
-                for (Boolean isAlive : listOfStates) {
-                    if (isAlive) {
-                        cellsInGrid.add(new Cell(i, j));
-                    }
-                }
+                cellsInGrid.add(new Cell(i, j));
             }
         }
+
+        for (Boolean el : listOfStates) {
+            int index = cellsInGrid.size()-1;
+            if (el.equals(true)) {
+                index--;
+            }
+            if (el.equals(false)){
+                cellsInGrid.remove(index);
+            }
+
+        }
+
         return cellsInGrid;
     }
 
-    public static String stringOutput(ArrayList<Cell> cellsGrid) {
+    public static String stringOutput(List<Cell> cellsGrid, int maxX) {
 
-        int maxX = 3;
         String grid = "";
 
         for (int i = 1; i <= cellsGrid.size(); i++) {
@@ -53,8 +61,8 @@ public class GameOfLife {
         return grid;
     }
 
-    public static ArrayList<Cell> calculateGenerations(ArrayList<Cell> cellGrid) {
-        ArrayList<Cell> resultGrid = new ArrayList<>();
+    public static List<Cell> calculateGenerations(List<Cell> cellGrid) {
+        List<Cell> resultGrid = new ArrayList<>();
 
         int numberOfCells = cellGrid.size();
         if (numberOfCells <= 2) {
@@ -96,6 +104,7 @@ public class GameOfLife {
         //For each cell in deadSet check number of neighbours
         //If neighbourCount == 3 add Cell to newCells;
         List<Cell> newCells = new ArrayList<>();
+
         for (Cell cell : deadSet) {
             if (neighbourCount(cell, cellGrid) == 3)
                 newCells.add(cell);
