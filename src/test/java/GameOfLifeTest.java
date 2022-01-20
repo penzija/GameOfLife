@@ -74,7 +74,7 @@ public class GameOfLifeTest {
     void testGridOutput_3() {
         List<Cell> testGrid = List.of(
                 new Cell(1, 1),
-                new Cell(2, 1)
+                new Cell(1, 2)
         );
 
         var expectedResult = "*\n*";
@@ -82,6 +82,21 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void testGridOutput_4() {
+        List<Cell> testGrid = List.of(
+                new Cell(1, 1),
+                new Cell(1, 2),
+                new Cell(1, 3)
+        );
+
+        var expectedResult = "*\n*\n*";
+        var actualResult = GameOfLife.stringOutput(testGrid, 2, 3);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
 
 //    @Test
 //    void testGridOutput_1() {

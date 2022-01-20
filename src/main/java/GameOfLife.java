@@ -18,28 +18,20 @@ public class GameOfLife {
         int lineCounter = 1;
 
         for (Cell cell : listOfCells) {
-            if (cell.getX() == gridSizeX) {
-                outputGrid += "\n";
+
+            if (cell.getX() > gridSizeX) {
+                outputGrid += "\n*";
             }
-            if (cell.getY() > lineCounter){
+            if (cell.getY() > lineCounter) {
                 outputGrid += "\n";
                 lineCounter++;
             }
+            if (previousCell(cell, listOfCells) == 0) {
+                outputGrid += "O";
+            }
             outputGrid += "*";
-
-
         }
-
         return outputGrid;
-
-//            }
-//            if (i % gridSizeX == 0) {
-//                grid += ("X\r\n");
-//            } else {
-//                grid += ("X");
-//            }
-
-
     }
 
     public static List<Cell> calculateGenerations(List<Cell> cellGrid) {
@@ -122,4 +114,23 @@ public class GameOfLife {
         */
     }
 
+    private static int previousCell(Cell cell, List<Cell> cellList) {
+        int x = cell.getX();
+        int y = cell.getY();
+
+        var count = cellList.stream().filter(c ->
+                c.getX() >= x - 1).count();
+
+        return (int) (count);
+    }
+
+    private static int nextCell(Cell cell, List<Cell> cellList) {
+        int x = cell.getX();
+        int y = cell.getY();
+
+        var count = cellList.stream().filter(c ->
+                c.getX() >= x + 1).count();
+
+        return (int) (count);
+    }
 }
