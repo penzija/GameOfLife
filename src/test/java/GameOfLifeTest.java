@@ -57,6 +57,19 @@ public class GameOfLifeTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    void testGridOutput_2() {
+        List<PrintedCell> testGrid = List.of(
+                new PrintedCell(1, 1, "*"),
+                new PrintedCell(2, 1, "*")
+        );
+
+        var expectedResult = "**";
+        var actualResult = GameOfLife.stringOutput(testGrid, 2, 2);
+
+        assertEquals(expectedResult, actualResult);
+    }
+
 //    @Test
 //    void testGridOutput_1() {
 //        ArrayList<Cell> testGrid = new ArrayList<>();
