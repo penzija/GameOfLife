@@ -5,24 +5,39 @@ public class GameOfLife {
 
     public static Cell newCell(int numberInGrid, int maxX, int maxY) {
 
-        int counterX = (numberInGrid - 1) / maxX + 1;
-        int counterY = (numberInGrid - 1) % maxY + 1;
+        int posX = (numberInGrid - 1) / maxX + 1;
+        int posY = (numberInGrid - 1) % maxY + 1;
 
-        return new Cell(counterX, counterY);
+        return new Cell(posX, posY);
     }
 
-    public static String stringOutput(List<Cell> cellsGrid, int maxX) {
+    public static PrintedCell fillOutputList(int numberInGrid, int maxX, int maxY) {
 
-        String grid = "";
+        int posX = (numberInGrid - 1) / maxX + 1;
+        int posY = (numberInGrid - 1) % maxY + 1;
 
-        for (int i = 1; i <= cellsGrid.size(); i++) {
-            if (i % maxX == 0) {
-                grid += ("X\r\n");
-            } else {
-                grid += ("X");
-            }
+        return new PrintedCell(posX, posY, "*");
+
+    }
+
+    public static String stringOutput(List<PrintedCell> listOfCells, int gridSizeX, int gridSizeY) {
+
+        String outputGrid = "";
+
+        for (PrintedCell cell: listOfCells) {
+            outputGrid += (cell.getContent());
         }
-        return grid;
+
+        return outputGrid;
+
+//            }
+//            if (i % gridSizeX == 0) {
+//                grid += ("X\r\n");
+//            } else {
+//                grid += ("X");
+//            }
+
+
     }
 
     public static List<Cell> calculateGenerations(List<Cell> cellGrid) {

@@ -5,10 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
         Tools tools = new Tools();
-        List<Boolean> cellState = new ArrayList<>();
 
         List<Cell> listOfCells = new ArrayList<>();
-
+        List<PrintedCell> listOfPrintedCells = new ArrayList<>();
 
         System.out.println("*** Game of life ***\n");
         System.out.print("Select the size of the grid (X): ");
@@ -17,11 +16,12 @@ public class Main {
         System.out.print("Select the size of the grid (Y): ");
         int gridSizeY = tools.readInt();
 
-        for (int i = 1; i <= gridSizeX * gridSizeY; i++) {
-            System.out.println("Is cell " + i + " alive? (y/n): ");
+        for (int cellNumber = 1; cellNumber <= gridSizeX * gridSizeY; cellNumber++) {
+            System.out.println("Is cell " + cellNumber + " alive? (y/n): ");
             String input = tools.readText();
             if (input.equals("y")) {
-                listOfCells.add(GameOfLife.newCell(i, gridSizeX, gridSizeY));
+                listOfCells.add(GameOfLife.newCell(cellNumber, gridSizeX, gridSizeY));
+                listOfPrintedCells.add(GameOfLife.fillOutputList(cellNumber, gridSizeX, gridSizeY));
             } else if (input.equals("n")) {
                 System.out.println("No cell added");
             } else {
@@ -34,7 +34,7 @@ public class Main {
 
         for (int i = 1; i <= generationN; i++) {
             System.out.println("Generation " + i + ":");
-            System.out.println(GameOfLife.stringOutput(listOfCells, gridSizeX));
+            System.out.println(GameOfLife.stringOutput(listOfPrintedCells, gridSizeX, gridSizeY));
         }
     }
 }

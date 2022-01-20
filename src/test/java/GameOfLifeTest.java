@@ -46,27 +46,58 @@ public class GameOfLifeTest {
     }
 
     @Test
-    void testGridOutput() {
-        ArrayList<Cell> testGrid = new ArrayList<>();
+    void testGridOutput_1() {
+        List<PrintedCell> testGrid = List.of(
+                new PrintedCell(1, 1, "*")
+        );
 
-        testGrid.add(new Cell(1, 1));
-        testGrid.add(new Cell(1, 2));
-        testGrid.add(new Cell(1, 3));
-        testGrid.add(new Cell(2, 1));
-        testGrid.add(new Cell(2, 2));
-        testGrid.add(new Cell(2, 3));
-        testGrid.add(new Cell(3, 1));
-        testGrid.add(new Cell(3, 2));
-        testGrid.add(new Cell(3, 3));
-
-        var maxX = 3;
-
-        var expectedResult = "XXX\r\nXXX\r\nXXX\r\n";
-
-        var actualResult = GameOfLife.stringOutput(testGrid, maxX);
+        var expectedResult = "*";
+        var actualResult = GameOfLife.stringOutput(testGrid, 2, 2);
 
         assertEquals(expectedResult, actualResult);
     }
+
+//    @Test
+//    void testGridOutput_1() {
+//        ArrayList<Cell> testGrid = new ArrayList<>();
+//
+//        testGrid.add(new Cell(1, 1));
+//        testGrid.add(new Cell(1, 2));
+//        testGrid.add(new Cell(2, 1));
+//
+//        var maxX = 2;
+//        var maxY = 2;
+//
+//        var expectedResult = "XX\r\nX";
+//
+//        var actualResult = GameOfLife.stringOutput(testGrid, maxX, maxY);
+//
+//        assertEquals(expectedResult, actualResult);
+//    }
+
+//    @Test
+//    void testGridOutput_2() {
+//        ArrayList<Cell> testGrid = new ArrayList<>();
+//
+//        testGrid.add(new Cell(1, 1));
+//        testGrid.add(new Cell(1, 2));
+//        testGrid.add(new Cell(1, 3));
+//        testGrid.add(new Cell(2, 1));
+//        testGrid.add(new Cell(2, 2));
+//        testGrid.add(new Cell(2, 3));
+//        testGrid.add(new Cell(3, 1));
+//        testGrid.add(new Cell(3, 2));
+//        testGrid.add(new Cell(3, 3));
+//
+//        var maxX = 3;
+//        var maxY = 3;
+//
+//        var expectedResult = "XXX\r\nXXX\r\nXXX\r\n";
+//
+//        var actualResult = GameOfLife.stringOutput(testGrid, maxX, maxY);
+//
+//        assertEquals(expectedResult, actualResult);
+//    }
 
     @Test
     void calculateGenerations() {
