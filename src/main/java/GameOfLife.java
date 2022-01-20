@@ -11,25 +11,28 @@ public class GameOfLife {
         return new Cell(posX, posY);
     }
 
-
-    public static String stringOutput(List<Cell> listOfCells, int gridSizeX, int gridSizeY) {
+    public static String stringOutput(List<Cell> listOfCells) {
 
         String outputGrid = "";
         int lineCounter = 1;
 
-        for (Cell cell : listOfCells) {
+        int minXValue = listOfCells.stream().mapToInt(i -> i.getX()).min().orElse(0);
+        int maxXValue = listOfCells.stream().mapToInt(i -> i.getX()).max().orElse(0);
+        int minYValue = listOfCells.stream().mapToInt(i -> i.getY()).min().orElse(0);
+        int maxYValue = listOfCells.stream().mapToInt(i -> i.getY()).max().orElse(0);
 
-            if (cell.getX() > gridSizeX) {
-                outputGrid += "\n*";
+
+        for (int y = minYValue; y <= maxYValue; y++) {
+            for (int x = minXValue; x <= maxXValue; x++) {
+                if (listOfCells.contains(new Cell(x, y))) {
+                    outputGrid += "*";
+
+                } else {
+                    outputGrid += "O";
+
+                }
             }
-            if (cell.getY() > lineCounter) {
-                outputGrid += "\n";
-                lineCounter++;
-            }
-            if (previousCell(cell, listOfCells) == 0) {
-                outputGrid += "O";
-            }
-            outputGrid += "*";
+            outputGrid += "\n";
         }
         return outputGrid;
     }

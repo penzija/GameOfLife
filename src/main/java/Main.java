@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Tools tools = new Tools();
 
-        List<Cell> listOfCells = new ArrayList<>();
+        List<Cell> generation0 = new ArrayList<>();
 
         System.out.println("*** Game of life ***\n");
         System.out.print("Select the size of the grid (X): ");
@@ -19,7 +19,7 @@ public class Main {
             System.out.println("Is cell " + cellNumber + " alive? (y/n): ");
             String input = tools.readText();
             if (input.equals("y")) {
-                listOfCells.add(GameOfLife.newCell(cellNumber, gridSizeX, gridSizeY));
+                generation0.add(GameOfLife.newCell(cellNumber, gridSizeX, gridSizeY));
             } else if (input.equals("n")) {
                 System.out.println("No cell added");
             } else {
@@ -30,9 +30,15 @@ public class Main {
         System.out.println("Choose the number of generations");
         int generationN = tools.readInt();
 
+        List<Cell> nextGen = GameOfLife.calculateGenerations(generation0);
+
+        System.out.println("Generation 0:");
+        System.out.println(GameOfLife.calculateGenerations(generation0));
+
         for (int i = 1; i <= generationN; i++) {
-            System.out.println("Generation " + i + ":");
-            System.out.println(GameOfLife.stringOutput(listOfCells, gridSizeX, gridSizeY));
+            System.out.println("Generation " + i + ":\n");
+            nextGen = GameOfLife.calculateGenerations(nextGen);
+            System.out.println(GameOfLife.stringOutput(nextGen));
         }
     }
 }

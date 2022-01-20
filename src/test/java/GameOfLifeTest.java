@@ -51,8 +51,8 @@ public class GameOfLifeTest {
                 new Cell(1, 1)
         );
 
-        var expectedResult = "*";
-        var actualResult = GameOfLife.stringOutput(testGrid, 2, 2);
+        var expectedResult = "*\n";
+        var actualResult = GameOfLife.stringOutput(testGrid);
 
         assertEquals(expectedResult, actualResult);
     }
@@ -64,8 +64,8 @@ public class GameOfLifeTest {
                 new Cell(2, 1)
         );
 
-        var expectedResult = "**";
-        var actualResult = GameOfLife.stringOutput(testGrid, 2, 2);
+        var expectedResult = "**\n";
+        var actualResult = GameOfLife.stringOutput(testGrid);
 
         assertEquals(expectedResult, actualResult);
     }
@@ -77,8 +77,8 @@ public class GameOfLifeTest {
                 new Cell(1, 2)
         );
 
-        var expectedResult = "*\n*";
-        var actualResult = GameOfLife.stringOutput(testGrid, 2, 2);
+        var expectedResult = "*\n*\n";
+        var actualResult = GameOfLife.stringOutput(testGrid);
 
         assertEquals(expectedResult, actualResult);
     }
@@ -91,54 +91,27 @@ public class GameOfLifeTest {
                 new Cell(1, 3)
         );
 
-        var expectedResult = "*\n*\n*";
-        var actualResult = GameOfLife.stringOutput(testGrid, 2, 3);
+        var expectedResult = "*\n*\n*\n";
+        var actualResult = GameOfLife.stringOutput(testGrid);
 
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    void testGridOutput_5() {
+        List<Cell> testGrid = List.of(
+                new Cell(1, 1),
+                new Cell(2, 1),
+                new Cell(2, 2),
+                new Cell(3, 2),
+                new Cell(3, 3)
+        );
 
-//    @Test
-//    void testGridOutput_1() {
-//        ArrayList<Cell> testGrid = new ArrayList<>();
-//
-//        testGrid.add(new Cell(1, 1));
-//        testGrid.add(new Cell(1, 2));
-//        testGrid.add(new Cell(2, 1));
-//
-//        var maxX = 2;
-//        var maxY = 2;
-//
-//        var expectedResult = "XX\r\nX";
-//
-//        var actualResult = GameOfLife.stringOutput(testGrid, maxX, maxY);
-//
-//        assertEquals(expectedResult, actualResult);
-//    }
+        var expectedResult = "**O\nO**\nOO*\n";
+        var actualResult = GameOfLife.stringOutput(testGrid);
 
-//    @Test
-//    void testGridOutput_2() {
-//        ArrayList<Cell> testGrid = new ArrayList<>();
-//
-//        testGrid.add(new Cell(1, 1));
-//        testGrid.add(new Cell(1, 2));
-//        testGrid.add(new Cell(1, 3));
-//        testGrid.add(new Cell(2, 1));
-//        testGrid.add(new Cell(2, 2));
-//        testGrid.add(new Cell(2, 3));
-//        testGrid.add(new Cell(3, 1));
-//        testGrid.add(new Cell(3, 2));
-//        testGrid.add(new Cell(3, 3));
-//
-//        var maxX = 3;
-//        var maxY = 3;
-//
-//        var expectedResult = "XXX\r\nXXX\r\nXXX\r\n";
-//
-//        var actualResult = GameOfLife.stringOutput(testGrid, maxX, maxY);
-//
-//        assertEquals(expectedResult, actualResult);
-//    }
+        assertEquals(expectedResult, actualResult);
+    }
 
     @Test
     void calculateGenerations() {
@@ -220,16 +193,6 @@ public class GameOfLifeTest {
         expectedResult.add(new Cell(2, 2));
 
         var actualResult = GameOfLife.calculateGenerations(testGrid);
-
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    void createLivingCell() {
-        List<Cell> testGrid = List.of(new Cell(1, 1));
-
-        var expectedResult = List.of(new Cell(5, 5));
-        var actualResult = GameOfLife.createLivingCell(testGrid);
 
         assertEquals(expectedResult, actualResult);
     }
