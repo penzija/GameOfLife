@@ -33,7 +33,7 @@ public class Main {
         List<Cell> nextGen = GameOfLife.calculateGenerations(generation0);
 
         System.out.println("Generation 0:");
-        System.out.println(GameOfLife.calculateGenerations(generation0));
+        System.out.println(GameOfLife.stringOutput((generation0)));
 
         for (int i = 1; i <= generationN; i++) {
             System.out.println("Generation " + i + ":\n");

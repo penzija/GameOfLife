@@ -14,12 +14,11 @@ public class GameOfLife {
     public static String stringOutput(List<Cell> listOfCells) {
 
         String outputGrid = "";
-        int lineCounter = 1;
 
-        int minXValue = listOfCells.stream().mapToInt(i -> i.getX()).min().orElse(0);
-        int maxXValue = listOfCells.stream().mapToInt(i -> i.getX()).max().orElse(0);
-        int minYValue = listOfCells.stream().mapToInt(i -> i.getY()).min().orElse(0);
-        int maxYValue = listOfCells.stream().mapToInt(i -> i.getY()).max().orElse(0);
+        int minXValue = listOfCells.stream().mapToInt(Cell::getX).min().orElse(0);
+        int maxXValue = listOfCells.stream().mapToInt(Cell::getX).max().orElse(0);
+        int minYValue = listOfCells.stream().mapToInt(Cell::getY).min().orElse(0);
+        int maxYValue = listOfCells.stream().mapToInt(Cell::getY).max().orElse(0);
 
 
         for (int y = minYValue; y <= maxYValue; y++) {
@@ -29,7 +28,6 @@ public class GameOfLife {
 
                 } else {
                     outputGrid += "O";
-
                 }
             }
             outputGrid += "\n";
@@ -98,41 +96,6 @@ public class GameOfLife {
         var count = cellList.stream().filter(c ->
                 c.getX() >= x - 1 && c.getX() <= x + 1
                         && c.getY() >= y - 1 && c.getY() <= y + 1).count();
-
-        return (int) (count - 1);
-
-        // free space = if the count is 3 then return 1 as free space
-
-        /*
-            x-1, y-1
-            x,   y-1
-            x+1, y-1
-
-            x-1, y
-            x+1, y
-
-            x-1, y+1
-            x,   y+1
-            x+1, y+1
-        */
-    }
-
-    private static int previousCell(Cell cell, List<Cell> cellList) {
-        int x = cell.getX();
-        int y = cell.getY();
-
-        var count = cellList.stream().filter(c ->
-                c.getX() >= x - 1).count();
-
-        return (int) (count);
-    }
-
-    private static int nextCell(Cell cell, List<Cell> cellList) {
-        int x = cell.getX();
-        int y = cell.getY();
-
-        var count = cellList.stream().filter(c ->
-                c.getX() >= x + 1).count();
 
         return (int) (count);
     }
