@@ -7,6 +7,8 @@ public class Main {
         Tools tools = new Tools();
         List<Boolean> cellState = new ArrayList<>();
 
+        List<Cell> listOfCells = new ArrayList<>();
+
 
         System.out.println("*** Game of life ***\n");
         System.out.print("Select the size of the grid (X): ");
@@ -19,9 +21,9 @@ public class Main {
             System.out.println("Is cell " + i + " alive? (y/n): ");
             String input = tools.readText();
             if (input.equals("y")) {
-                cellState.add(true);
+                listOfCells.add(GameOfLife.newCell(i, gridSizeX, gridSizeY));
             } else if (input.equals("n")) {
-                cellState.add(false);
+                System.out.println("No cell added");
             } else {
                 System.out.println("Error! Please type 'y' or 'n'");
             }
@@ -30,13 +32,9 @@ public class Main {
         System.out.println("Choose the number of generations");
         int generationN = tools.readInt();
 
-        GridParameter gridParameter = new GridParameter(gridSizeX, gridSizeY, cellState, gridSizeX);
-        List<Cell> grid = GameOfLife.buildGrid(gridParameter);
-
         for (int i = 1; i <= generationN; i++) {
-            List<Cell> generations = GameOfLife.calculateGenerations(grid);
-            System.out.println("generation " + i + ":");
-            System.out.println(GameOfLife.stringOutput(generations, gridSizeX));
+            System.out.println("Generation " + i + ":");
+            System.out.println(GameOfLife.stringOutput(listOfCells, gridSizeX));
         }
     }
 }

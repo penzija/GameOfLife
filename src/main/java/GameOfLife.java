@@ -3,48 +3,12 @@ import java.util.List;
 
 public class GameOfLife {
 
-    public static GridParameter storeGridParameter() {
-        List<Boolean> deadOrAlive = new ArrayList<>();
+    public static Cell newCell(int numberInGrid, int maxX, int maxY) {
 
-        System.out.println("How big is the grid? (x) ");
-        System.out.println("How big is the grid? (y) ");
-        int gridXValue = 3;
-        int gridYValue = 3;
-        int gridMaxX = 3;
+        int counterX = (numberInGrid - 1) / maxX + 1;
+        int counterY = (numberInGrid - 1) % maxY + 1;
 
-        for (int i = 0; i < gridXValue * gridYValue; i++) {
-            System.out.println("Is the cell dead or alive? ");
-            deadOrAlive.add(true);
-        }
-        return new GridParameter(gridXValue, gridYValue, deadOrAlive, gridMaxX);  // HERE WE CREATED THE PARAMETERS FOR THE NEXT METHOD
-    }
-
-    public static List<Cell> buildGrid(GridParameter gridParameters) {
-
-        int xValue = gridParameters.getGridX();
-        int yValue = gridParameters.getGridY();
-        List<Boolean> listOfStates = new ArrayList<>(gridParameters.cellState);
-
-        List<Cell> cellsInGrid = new ArrayList<>();
-
-        for (int i = 1; i <= xValue; i++) {
-            for (int j = 1; j <= yValue; j++) {
-                cellsInGrid.add(new Cell(i, j));
-            }
-        }
-
-        for (Boolean el : listOfStates) {
-            int index = cellsInGrid.size()-1;
-            if (el.equals(true)) {
-                index--;
-            }
-            if (el.equals(false)){
-                cellsInGrid.remove(index);
-            }
-
-        }
-
-        return cellsInGrid;
+        return new Cell(counterX, counterY);
     }
 
     public static String stringOutput(List<Cell> cellsGrid, int maxX) {
@@ -140,6 +104,5 @@ public class GameOfLife {
             x+1, y+1
         */
     }
-
 
 }

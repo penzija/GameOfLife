@@ -7,64 +7,43 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GameOfLifeTest {
 
     @Test
-    void storeAllValues_method() {
-        List<Boolean> controlList = List.of(true, true, true, true, true, true, true, true, true);
-        GridParameter expectedResult = new GridParameter(3, 3, controlList, 3);
-        GridParameter actualResult = GameOfLife.storeGridParameter();
+    void newCell_from_user_input() {
+        int numberOfCell = 9;
+        int maxX = 3;
+        int maxY = 3;
+
+        var expectedResult = new Cell(3, 3);
+
+        var actualResult = GameOfLife.newCell(numberOfCell, maxX, maxY);
 
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void defineGrid_cell_creation() {
-        List<Cell> expectedResult = List.of(
-                new Cell(1, 1),
-                new Cell(1, 2),
-                new Cell(1, 3),
-                new Cell(2, 1),
-                new Cell(2, 2),
-                new Cell(2, 3),
-                new Cell(3, 1),
-                new Cell(3, 2),
-                new Cell(3, 3)
-        );
+    void newCell_from_user_input_2() {
+        int numberOfCell = 7;
+        int maxX = 3;
+        int maxY = 3;
 
-        List<Boolean> controlList = List.of(true, true, false, false, false, false, false, false, false);
+        var expectedResult = new Cell(3, 1);
 
-        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
-        var actualResult = GameOfLife.buildGrid(gridParameters);
+        var actualResult = GameOfLife.newCell(numberOfCell, maxX, maxY);
 
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    void defineGrid_one_cell() {
-        List<Cell> expectedResult = List.of(
-                new Cell(1, 1)
-        );
+    void newCell_from_user_input_3() {
+        int numberOfCell = 58;
+        int maxX = 8;
+        int maxY = 8;
 
-        List<Boolean> controlList = List.of(true, false, false, false, false, false, false, false, false);
+        var expectedResult = new Cell(8, 2);
 
-        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
-        var actualResult = GameOfLife.buildGrid(gridParameters);
-
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    void defineGrid_method3() {
-        List<Cell> expectedResult = List.of(
-                new Cell(3, 3)
-        );
-
-        List<Boolean> controlList = List.of(false, false, false, false, false, false, false, false, true);
-
-        GridParameter gridParameters = new GridParameter(3, 3, controlList, 3);
-        var actualResult = GameOfLife.buildGrid(gridParameters);
+        var actualResult = GameOfLife.newCell(numberOfCell, maxX, maxY);
 
         assertEquals(expectedResult, actualResult);
     }
-
 
     @Test
     void testGridOutput() {
@@ -193,6 +172,5 @@ public class GameOfLifeTest {
 
         assertEquals(expectedResult, actualResult);
     }
-
 
 }
