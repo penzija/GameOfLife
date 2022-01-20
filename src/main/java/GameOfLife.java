@@ -11,21 +11,23 @@ public class GameOfLife {
         return new Cell(posX, posY);
     }
 
-    public static PrintedCell fillOutputList(int numberInGrid, int maxX, int maxY) {
 
-        int posX = (numberInGrid - 1) / maxX + 1;
-        int posY = (numberInGrid - 1) % maxY + 1;
-
-        return new PrintedCell(posX, posY, "*");
-
-    }
-
-    public static String stringOutput(List<PrintedCell> listOfCells, int gridSizeX, int gridSizeY) {
+    public static String stringOutput(List<Cell> listOfCells, int gridSizeX, int gridSizeY) {
 
         String outputGrid = "";
+        int lineCounter = 1;
 
-        for (PrintedCell cell: listOfCells) {
-            outputGrid += (cell.getContent());
+        for (Cell cell : listOfCells) {
+            if (cell.getX() == gridSizeX) {
+                outputGrid += "\n";
+            }
+            if (cell.getY() > lineCounter){
+                outputGrid += "\n";
+                lineCounter++;
+            }
+            outputGrid += "*";
+
+
         }
 
         return outputGrid;

@@ -7,7 +7,6 @@ public class Main {
         Tools tools = new Tools();
 
         List<Cell> listOfCells = new ArrayList<>();
-        List<PrintedCell> listOfPrintedCells = new ArrayList<>();
 
         System.out.println("*** Game of life ***\n");
         System.out.print("Select the size of the grid (X): ");
@@ -21,7 +20,6 @@ public class Main {
             String input = tools.readText();
             if (input.equals("y")) {
                 listOfCells.add(GameOfLife.newCell(cellNumber, gridSizeX, gridSizeY));
-                listOfPrintedCells.add(GameOfLife.fillOutputList(cellNumber, gridSizeX, gridSizeY));
             } else if (input.equals("n")) {
                 System.out.println("No cell added");
             } else {
@@ -34,7 +32,7 @@ public class Main {
 
         for (int i = 1; i <= generationN; i++) {
             System.out.println("Generation " + i + ":");
-            System.out.println(GameOfLife.stringOutput(listOfPrintedCells, gridSizeX, gridSizeY));
+            System.out.println(GameOfLife.stringOutput(listOfCells, gridSizeX, gridSizeY));
         }
     }
 }
