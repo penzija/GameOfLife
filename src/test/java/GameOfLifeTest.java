@@ -12,7 +12,7 @@ public class GameOfLifeTest {
         int maxX = 3;
         int maxY = 3;
 
-        var expectedResult = new Cell(3, 3);
+        var expectedResult = new Cell(maxX, maxY);
 
         var actualResult = GameOfLife.newCell(numberOfCell, maxX, maxY);
 

@@ -22,18 +22,7 @@ public class GameOfLife {
         int minYValue = listOfCells.stream().mapToInt(Cell::getY).min().orElse(0);
         int maxYValue = listOfCells.stream().mapToInt(Cell::getY).max().orElse(0);
 
-
-        for (int y = minYValue; y <= maxYValue; y++) {
-            for (int x = minXValue; x <= maxXValue; x++) {
-                if (listOfCells.contains(new Cell(x, y))) {
-                    outputGrid += "*";
-
-                } else {
-                    outputGrid += "O";
-                }
-            }
-            outputGrid += "\n";
-        }
+        outputGrid = findMinMaxValue(listOfCells, outputGrid, minXValue, maxXValue, minYValue, maxYValue);
         return outputGrid;
     }
 
@@ -41,17 +30,12 @@ public class GameOfLife {
         List<Cell> resultGrid = new ArrayList<>();
 
         int numberOfCells = cellGrid.size();
+
         if (numberOfCells <= 2) {
             return resultGrid;
         }
 
-        for (Cell cell : cellGrid) {
-            int numberOfNeighbours = neighbourCount(cell, cellGrid);
-
-            if (numberOfNeighbours <= 3 && numberOfNeighbours >= 2) {
-                resultGrid.add(cell);
-            }
-        }
+        storeSurvivingCells(cellGrid, resultGrid);
 
         resultGrid.addAll(createLivingCell(resultGrid));
 
@@ -61,30 +45,18 @@ public class GameOfLife {
     public static List<Cell> createLivingCell(List<Cell> cellGrid) {
 
         Set<Cell> deadSet = new HashSet<>();
+
         //For each living cell in grid
-        for (Cell cell : cellGrid) {
-            //Create all neighbour Cells and add to deadSet
-            deadSet.add(new Cell(cell.getX() - 1, cell.getY()));
-            deadSet.add(new Cell(cell.getX() + 1, cell.getY()));
-            deadSet.add(new Cell(cell.getX() - 1, cell.getY() - 1));
-            deadSet.add(new Cell(cell.getX() - 1, cell.getY() + 1));
-            deadSet.add(new Cell(cell.getX() + 1, cell.getY() - 1));
-            deadSet.add(new Cell(cell.getX() + 1, cell.getY() + 1));
-            deadSet.add(new Cell(cell.getX(), cell.getY() - 1));
-            deadSet.add(new Cell(cell.getX(), cell.getY() + 1));
-        }
+        createNeighbourCells(cellGrid, deadSet);
 
         //Remove all cells that are alive from deadSet,
         cellGrid.forEach(deadSet::remove);
 
         //For each cell in deadSet check number of neighbours
         //If neighbourCount == 3 add Cell to newCells;
-        List<Cell> newCells = new ArrayList<>();
 
-        for (Cell cell : deadSet) {
-            if (neighbourCount(cell, cellGrid) == 3)
-                newCells.add(cell);
-        }
+        List<Cell> newCells = CheckNumberOfNeighboursInDeadset(cellGrid, deadSet);
+
         //return deadSet.stream().filter(cell -> neighbourCount(cell,cellGrid) == 3).toList();
 
 
