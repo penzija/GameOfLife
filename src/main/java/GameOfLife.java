@@ -54,10 +54,8 @@ public class GameOfLife {
         //For each cell in deadSet check number of neighbours
         //If neighbourCount == 3 add Cell to newCells;
 
-        List<Cell> newCells = CheckNumberOfNeighboursInDeadset(cellGrid, deadSet);
-
         //return deadSet.stream().filter(cell -> neighbourCount(cell,cellGrid) == 3).toList();
-        return newCells;
+        return CheckNumberOfNeighboursInDeadset(cellGrid, deadSet);
     }
 
     private static int neighbourCount(Cell cell, List<Cell> cellList) {
