@@ -38,7 +38,6 @@ public class GameOfLife {
         storeSurvivingCells(cellGrid, resultGrid);
 
         resultGrid.addAll(createLivingCell(resultGrid));
-
         return resultGrid;
     }
 
@@ -58,8 +57,6 @@ public class GameOfLife {
         List<Cell> newCells = CheckNumberOfNeighboursInDeadset(cellGrid, deadSet);
 
         //return deadSet.stream().filter(cell -> neighbourCount(cell,cellGrid) == 3).toList();
-
-
         return newCells;
     }
 
@@ -72,5 +69,73 @@ public class GameOfLife {
                         && c.getY() >= y - 1 && c.getY() <= y + 1).count();
 
         return (int) (count);
+    }
+
+    private static String findMinMaxValue(List<Cell> listOfCells, String outputGrid, int minXValue, int maxXValue, int minYValue, int maxYValue) {
+        for (int y = minYValue; y <= maxYValue; y++) {
+            for (int x = minXValue; x <= maxXValue; x++) {
+                outputGrid = containNewCell(listOfCells, outputGrid, y, x);
+            }
+            outputGrid += "\n";
+        }
+
+        return outputGrid;
+    }
+
+    private static String containNewCell(List<Cell> listOfCells, String outputGrid, int y, int x) {
+        if (listOfCells.contains(new Cell(x, y))) {
+            outputGrid += "*";
+
+        } else {
+            outputGrid += "O";
+        }
+        return outputGrid;
+    }
+
+    private static void storeSurvivingCells(List<Cell> cellGrid, List<Cell> resultGrid) {
+
+        for (Cell cell : cellGrid) {
+            int removeItself=1;
+            
+            int numberOfNeighbours = neighbourCount(cell, cellGrid)-removeItself;
+
+            if (isEnoughNeighbours(numberOfNeighbours)) {
+                resultGrid.add(cell);
+            }
+        }
+
+    }
+
+    private static boolean isEnoughNeighbours(int numberOfNeighbours) {
+        return numberOfNeighbours <= 3 && numberOfNeighbours >= 2;
+    }
+
+    private static void createNeighbourCells(List<Cell> cellGrid, Set<Cell> deadSet) {
+        for (Cell cell : cellGrid) {
+            //Create all neighbour Cells and add to deadSet
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY()));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY()));
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX() - 1, cell.getY() + 1));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX() + 1, cell.getY() + 1));
+            deadSet.add(new Cell(cell.getX(), cell.getY() - 1));
+            deadSet.add(new Cell(cell.getX(), cell.getY() + 1));
+        }
+    }
+
+    private static List<Cell> CheckNumberOfNeighboursInDeadset(List<Cell> cellGrid, Set<Cell> deadSet) {
+        List<Cell> newCells = new ArrayList<>();
+
+        for (Cell cell : deadSet) {
+
+            checkNeighbourCount(cellGrid, newCells, cell);
+        }
+        return newCells;
+    }
+
+    private static void checkNeighbourCount(List<Cell> cellGrid, List<Cell> newCells, Cell cell) {
+        if (neighbourCount(cell, cellGrid) == 3)
+            newCells.add(cell);
     }
 }
